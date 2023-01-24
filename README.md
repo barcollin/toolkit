@@ -8,6 +8,7 @@ A simple go module that provides commonly used go-tools
 * **Files Upload** - Upload files and generate random filenames using `Random string Generator` , it also support file size limits and file types customization
 * **Creating Directory** - Create directories it they don't exist
 * **Generating Slugs** - Generate slugs from a string
+* **Downloading Static Files** - Download files and forces browser not to display such files
 
 ## Installation
 
