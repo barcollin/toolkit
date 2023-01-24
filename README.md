@@ -34,3 +34,20 @@ func main() {
 
 }
 ```
+
+### Creating a Directory if it doesn't exist
+
+```go
+package main
+
+import (
+	"github.com/barcollin/toolkit"
+)
+
+func main() {
+	var tools toolkit.Tools
+
+	tools.CreateDirIfNotExist("./test-dir")
+}
+
+```
