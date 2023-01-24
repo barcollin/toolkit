@@ -13,7 +13,7 @@ A simple go module that provides commonly used go-tools
 
 ## Examples
 
-#### Random string Generation
+#### Random String Generation
 
 ```go
 package main
