@@ -71,7 +71,7 @@ func (t *Tools) UploadFiles(r *http.Request, uploadDir string, rename ...bool) (
 
 	err := r.ParseMultipartForm(int64(t.MaxFileSize))
 	if err != nil {
-		return nil, errors.New("The uploaded file is too big")
+		return nil, errors.New("the uploaded file is too big")
 	}
 
 	for _, fHeaders := range r.MultipartForm.File {
@@ -107,7 +107,7 @@ func (t *Tools) UploadFiles(r *http.Request, uploadDir string, rename ...bool) (
 				}
 
 				if !allowed {
-					return nil, errors.New("The uploaded file type is not permitted")
+					return nil, errors.New("the uploaded file type is not permitted")
 				}
 
 				_, err = infile.Seek(0, 0)
@@ -150,4 +150,18 @@ func (t *Tools) UploadFiles(r *http.Request, uploadDir string, rename ...bool) (
 	}
 
 	return uploadedFiles, nil
+}
+
+// CreateDirNotExist creates a directory and all necessary parents, if it doesn't exist
+func (t *Tools) CreateDirIfNotExists(path string) error {
+	const mode = 0755
+
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		err := os.MkdirAll(path, mode)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
