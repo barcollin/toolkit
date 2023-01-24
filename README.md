@@ -9,6 +9,7 @@ A simple go module that provides commonly used go-tools
 * **Creating Directory** - Create directories it they don't exist
 * **Generating Slugs** - Generate slugs from a string
 * **Downloading Static Files** - Download files and forces browser not to display such files
+* **Working with JSON** - provides quick way to read & write JSON
 
 ## Installation
 
@@ -79,5 +80,46 @@ func main() {
 
 }
 
+
+```
+
+#### Working with JSON
+
+```go
+package main
+
+import (
+	"log"
+	"net/http"
+
+	"github.com/barcollin/toolkit"
+)
+
+func main() {
+	// get routes
+	mux := routes()
+
+	// start a server
+	err := http.ListenAndServe(":8080", mux)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+}
+
+func routes() http.Handler {
+	mux := http.NewServeMux()
+
+	mux.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("."))))
+	mux.HandleFunc("/download", downloadFile)
+
+	return mux
+
+}
+
+func downloadFile(w http.ResponseWriter, r *http.Request) {
+	t := toolkit.Tools{}
+	t.DownloadStaticFile(w, r, "./files", "img.png", "puppy.png")
+}
 
 ```
