@@ -30,7 +30,7 @@ func NewTestClient(fn RoundTripFunc) *http.Client {
 	}
 }
 
-func TestTools_PuhsJSONToRemote(t *testing.T) {
+func TestTools_PushJSONToRemote(t *testing.T) {
 	client := NewTestClient(func(req *http.Request) *http.Response {
 		// test request parameters
 		return &http.Response{
