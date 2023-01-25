@@ -83,7 +83,7 @@ func main() {
 
 ```
 
-#### Working with JSON
+#### Downloading a static file
 
 ```go
 package main
