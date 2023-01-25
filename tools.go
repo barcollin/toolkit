@@ -310,7 +310,7 @@ func (t *Tools) ErrorJSON(w http.ResponseWriter, err error, status ...int) error
 
 // pushJSONToRemote posts arbitrary data to some URL as JSON, and returns the response, status code and error if any
 // The final parameter, client is optional. if none specified, we use the standard http.client
-func (t *Tools) pushJSONToRemote(uri string, data interface{}, client ...*http.Client) (*http.Response, int, error) {
+func (t *Tools) PushJSONToRemote(uri string, data interface{}, client ...*http.Client) (*http.Response, int, error) {
 	// create json
 	jsonData, err := json.Marshal(data)
 	if err != nil {
