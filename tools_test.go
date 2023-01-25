@@ -239,6 +239,16 @@ var jsonTests = []struct {
 	allowUnknown  bool
 }{
 	{name: "good json", json: `{"foo": "bar"}`, errorExpected: false, maxSize: 1024, allowUnknown: false},
+	{name: "badly formatted json", json: `{"foo": }`, errorExpected: true, maxSize: 1024, allowUnknown: false},
+	{name: "incorrect type", json: `{"foo": 1 }`, errorExpected: true, maxSize: 1024, allowUnknown: false},
+	{name: "two json files", json: `{"foo": "1"}{"alpha": "beta"}`, errorExpected: true, maxSize: 1024, allowUnknown: false},
+	{name: "empty body", json: ``, errorExpected: true, maxSize: 1024, allowUnknown: false},
+	{name: "syntax error in json", json: `{"foo":1"`, errorExpected: true, maxSize: 1024, allowUnknown: false},
+	{name: "unknown field", json: `{"fooo":"a"}`, errorExpected: true, maxSize: 1024, allowUnknown: false},
+	{name: "allow unknown field", json: `{"fooo":"a"}`, errorExpected: false, maxSize: 1024, allowUnknown: true},
+	{name: "missing field name", json: `{jack:"a"}`, errorExpected: true, maxSize: 1024, allowUnknown: true},
+	{name: "file too large", json: `{"foor":"bar"}`, errorExpected: true, maxSize: 5, allowUnknown: true},
+	{name: "not json", json: `Hello, world`, errorExpected: true, maxSize: 1024, allowUnknown: true},
 }
 
 func TestTools_ReadJSON(t *testing.T) {
