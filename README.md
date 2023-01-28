@@ -9,7 +9,12 @@ A simple go module that provides commonly used go-tools
 * **Creating Directory** - Create directories it they don't exist
 * **Generating Slugs** - Generate slugs from a string
 * **Downloading Static Files** - Download files and forces browser not to display such files
-* **Working with JSON** - provides quick way to read & write JSON
+* **Read JSOn** - provides quick way to read JSON
+* **Write JSOn** - provides quick way to read JSON
+* **Error JSOn** - produces a JSON encoded error repsonse
+* **Post JSOn** - pPosts JSON to a remote service
+
+
 
 ## Installation
 
